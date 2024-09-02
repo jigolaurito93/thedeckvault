@@ -43,11 +43,11 @@ const Slider = () => {
             className={`${slide.bg} w-screen h-full flex flex-col gap-16 xl:flex-row`}
           >
             {/* text container */}
-            <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col items-center justify-center gap-8 2xl:gap-12 text-center">
+            <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col items-center justify-center gap-8 2xl:gap-20 text-center">
               <h2 className="text-xl lg:text-3xl 2xl:text-5xl">
                 {slide.description}
               </h2>
-              <h1 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold px-8 tracking-wider">
+              <h1 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold px-32 tracking-wider">
                 {slide.title}
               </h1>
               <Link href={slide.url}>
