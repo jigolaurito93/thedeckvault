@@ -8,9 +8,10 @@ const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ weight: ["400"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bed & Breakfast",
-  description: "Book and Relax",
-  keywords: ["bed", "breakfast", "relax"],
+  title: "The Deck Vault",
+  description:
+    "Your one-stop shop for all things TCG. We have a wide selection of cards from Pokemon, Magic: The Gathering, Yu-Gi-Oh!, and more!",
+  keywords: ["tcg", "cards", "pokemon"],
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Navbar />
         {children}
