@@ -20,14 +20,21 @@ const Navbar = () => {
       {/* big screen */}
       <div className="hidden md:flex items-center justify-between gap-8 h-full">
         {/* left */}
-        <div className="w-1/3 flex gap-2 items-center border">
-          <TbCardsFilled className="text-3xl" />
-          <Link href={"/"} className="text-2xl tracking-wide">
-            The Deck Vault
+        <div className="w-1/3 xl:w-1/2 flex items-center gap-10">
+          <Link href={"/"} className="flex gap-2 items-center">
+            <TbCardsFilled className="text-[25px]" />
+            <div className="text-lg tracking-wide">The Deck Vault</div>
           </Link>
+          <div className="hidden xl:flex gap-4">
+            <Link href={"/"}>Home</Link>
+            <Link href={"/"}>Shop</Link>
+            <Link href={"/"}>Deals</Link>
+            <Link href={"/"}>About</Link>
+            <Link href={"/"}>Contact</Link>
+          </div>
         </div>
         {/* right */}
-        <div className="w-2/3 flex items-center justify-between gap-8">
+        <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8">
           <SearchBar />
           <NavIcons />
         </div>
