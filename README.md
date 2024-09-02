@@ -2,6 +2,10 @@
 
 The Deck Vault is an e-commerce website dedicated to trading card game (TCG) enthusiasts. Our primary focus is on selling Pokémon cards, but we also offer a variety of other Pokémon merchandise.
 
+## Deployment
+The Deck Vault is deployed on Vercel. You can access the live website at the following URL:
+https://thedeckvault-a5bbg7s0b-breakbuddys-projects.vercel.app/
+
 ## Table of Contents
 
 - [Features](#features)
@@ -9,7 +13,7 @@ The Deck Vault is an e-commerce website dedicated to trading card game (TCG) ent
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Contributing](#contributing)
-- [License](#license)
+- [Deployment](#deployment)
 
 ## Features
 
@@ -22,7 +26,11 @@ The Deck Vault is an e-commerce website dedicated to trading card game (TCG) ent
 
 1. Clone the repository from GitHub.
 2. Navigate to the project directory.
-3. Install the dependencies using your preferred package manager (e.g., npm, yarn).
+3. Install the dependencies using `pnpm`:
+
+    ```sh
+    pnpm i
+    ```
 
 ## Usage
 
@@ -30,11 +38,16 @@ To use the website, follow these steps:
 
 1. Start the development server:
 
-    ```bash
-    npm run dev
+    ```sh
+    pnpm dev
     ```
 
 2. Open your browser and navigate to `http://localhost:3000`.
 
 ## Configuration
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any changes or improvements.
+
+
 
