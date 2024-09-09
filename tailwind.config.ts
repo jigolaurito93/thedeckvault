@@ -16,6 +16,9 @@ const config: Config = {
       colors: {
         "accent-1": "#F35C7A",
       },
+      screens: {
+        xxl: "2000px", // Custom breakpoint for 1700px
+      },
     },
   },
   plugins: [],

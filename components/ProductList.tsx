@@ -5,7 +5,13 @@ import Image from "next/image";
 
 const ProductList = () => {
   return (
-    <div className="mt-12 h-full grid grid-cols-12 w-full justify-evenly gap-y-10 2xl:px-32">
+    <div className="mt-12 h-full grid grid-cols-12 w-full justify-evenly gap-y-10 2xl:px-32 xxl:px-80"  >
+      <ProductListItem />
+      <ProductListItem />
+      <ProductListItem />
+      <ProductListItem />
+      <ProductListItem />
+      <ProductListItem />
       <ProductListItem />
       <ProductListItem />
       <ProductListItem />
