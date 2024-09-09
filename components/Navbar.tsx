@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="w-1/3 xl:w-1/2 flex items-center gap-10">
           <Link href={"/"} className="flex gap-2 items-center">
             <TbCardsFilled className="text-[25px]" />
-            <div className="text-2xl tracking-wide">TDC</div>
+            <div className="text-2xl tracking-wide">TDV</div>
           </Link>
           <div className="hidden xl:flex gap-4">
             <Link href={"/"}>Home</Link>

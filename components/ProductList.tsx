@@ -1,9 +1,11 @@
 import React from "react";
 import ProductListItem from "./ProductListItem";
+import Link from "next/link";
+import Image from "next/image";
 
 const ProductList = () => {
   return (
-    <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="mt-12 h-full grid grid-cols-12 w-full justify-evenly gap-y-10 2xl:px-32">
       <ProductListItem />
       <ProductListItem />
       <ProductListItem />

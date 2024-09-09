@@ -6,8 +6,10 @@ const HomePage = () => {
   return (
     <div>
       <Slider />
-      <div className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
-        <h1 className="text-2xl">Featured Products</h1>
+      <div className="mt-24 px-12 flex flex-col justify-center items-center">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl w-full">
+          Featured Products
+        </h1>
         <ProductList />
       </div>
     </div>
