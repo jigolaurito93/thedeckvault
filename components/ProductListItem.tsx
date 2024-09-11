@@ -5,7 +5,7 @@ import React from "react";
 const ProductListItem = () => {
   return (
     <Link
-      href={"/"}
+      href={"/list?cat=test"}
       className="w-full col-span-12 md:col-span-6 lg:col-span-4 2xl:col-span-3 flex justify-evenly"
     >
       <div className="w-72 flex flex-col gap-2">
