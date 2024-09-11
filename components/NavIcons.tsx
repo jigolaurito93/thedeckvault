@@ -35,11 +35,11 @@ const NavIcons = () => {
         </div>
       )}
       <RiNotification3Line className="cursor-pointer text-xl" />
-      <div className="relative cursor-pointer">
-        <BsCart3
-          className="text-xl z-20"
-          onClick={() => setIsCartOpen(!isCartOpen)}
-        />
+      <div
+        className="relative cursor-pointer"
+        onClick={() => setIsCartOpen(!isCartOpen)}
+      >
+        <BsCart3 className="text-xl z-20" />
         {isCartOpen && <CartModal />}
         <div className="absolute -top-4 -right-4 w-6 h-6 bg-accent-1 flex items-center text-white text-sm justify-center rounded-full">
           3
