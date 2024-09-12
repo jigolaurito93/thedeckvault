@@ -9,13 +9,13 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-gray-100 md:px-24 lg:px-12 py-24 px-12 xl:px-24 2xl:px-[180px] flex-col relative">
+    <div className="bg-gray-100 md:px-24 lg:px-12 py-24 px-12 xl:px-24 2xl:px-[200px] flex-col relative">
       <div className="hidden lg:flex xl:hidden absolute">LG</div>
       <div className="hidden xl:flex 2xl:hidden absolute">XL</div>
       <div className="hidden 2xl:flex 3xl:hidden absolute">2XL</div>
 
       {/* TOP */}
-      <div className="flex flex-col lg:flex-row justify-between gap-14 lg:gap-8 2xl:gap-28">
+      <div className="flex flex-col lg:flex-row justify-evenly gap-14 lg:gap-8 2xl:gap-28">
         {/* LEFT */}
         <div className="w-full lg:w-1/4 flex flex-col gap-8 ">
           <Link href={"/"} className="text-2xl tracking-wide">
@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
         {/* MIDDLE */}
-        <div className="hidden lg:flex lg:w-1/2 2xl:gap-12 justify-between">
+        <div className="hidden lg:flex lg:w-1/2 2xl:gap-12 justify-between 2xl:justify-evenly">
           <div className="flex flex-col gap-12">
             <h1 className="text-lg font-medium">COMPANY</h1>
             <div className="flex flex-col gap-6">
