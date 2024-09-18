@@ -10,6 +10,8 @@ import {
 const Footer = () => {
   return (
     <div className="bg-gray-100 md:px-24 lg:px-12 py-24 px-12 xl:px-24 2xl:px-[200px] flex-col relative">
+      <div className="hidden sm:flex md:hidden absolute">SM</div>
+      <div className="hidden md:flex lg:hidden absolute">MD</div>
       <div className="hidden lg:flex xl:hidden absolute">LG</div>
       <div className="hidden xl:flex 2xl:hidden absolute">XL</div>
       <div className="hidden 2xl:flex 3xl:hidden absolute">2XL</div>
