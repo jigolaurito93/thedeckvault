@@ -1,6 +1,17 @@
+'use client'
+import { createClient } from "@/utils/supabase/client";
 import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
+  const handleGoogleRegister = () => {
+    const supabase = createClient();
+    supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "http://localhost:3000/auth/callback",
+      },
+    });
+  };
   return (
     <div>
       <div className="py-20 w-[80vw] max-w-[25rem] mx-auto flex flex-col items-center gap-5 ">
@@ -46,7 +57,10 @@ const Register = () => {
         </form>
         or
         {/* OAuth */}
-        <button className="flex items-center gap-2 border w-full justify-center py-2">
+        <button
+          className="flex items-center gap-2 border w-full justify-center py-2"
+          onClick={() => handleGoogleRegister()}
+        >
           <FcGoogle className="text-xl" />
           <h3>Sign Up with Google</h3>
         </button>
