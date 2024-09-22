@@ -17,7 +17,7 @@ const Register = () => {
       <div className="py-20 w-[80vw] max-w-[25rem] mx-auto flex flex-col items-center gap-5 ">
         <h1 className=" text-2xl">Create an Account</h1>
         <p className="text-sm text-center text-gray-500">
-          Create an account to access exclusive Pokémon products, enjoy
+          Create an account to access exclusive Pokemon products, enjoy
           personalized shopping, and stay updated with the latest releases.
         </p>
         <form action="" className="flex flex-col w-full gap-2">
