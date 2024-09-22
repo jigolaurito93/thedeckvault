@@ -29,8 +29,8 @@ const ProductList = () => {
 
   return (
     <div className="mt-12 h-full grid grid-cols-12 w-full justify-center lg:justify-between gap-12">
-      {products.map((item) => (
-        <ProductListItem product={item} />
+      {products.map((item, i) => (
+        <ProductListItem key={i} product={item} />
       ))}
     </div>
   );
