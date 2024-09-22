@@ -1,6 +1,7 @@
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
-import { createClient } from '@/utils/supabase/server';
+"use server";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
 export async function login(formData: FormData) {
   const supabase = createClient();
@@ -8,23 +9,23 @@ export async function login(formData: FormData) {
   // type-casting here for convenience
   // in practice, you should validate your inputs
   const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
   };
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    if (error.message.includes('Email link is invalid or has expired')) {
-      redirect('/error?message=Email link is invalid or has expired');
+    if (error.message.includes("Email link is invalid or has expired")) {
+      redirect("/error?message=Email link is invalid or has expired");
     } else {
-      redirect('/error');
+      redirect("/error");
     }
     return;
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/');
+  revalidatePath("/", "layout");
+  redirect("/");
 }
 
 export async function signup(formData: FormData) {
@@ -33,21 +34,21 @@ export async function signup(formData: FormData) {
   // type-casting here for convenience
   // in practice, you should validate your inputs
   const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
   };
 
   const { error } = await supabase.auth.signUp(data);
 
   if (error) {
-    if (error.message.includes('Email link is invalid or has expired')) {
-      redirect('/error?message=Email link is invalid or has expired');
+    if (error.message.includes("Email link is invalid or has expired")) {
+      redirect("/error?message=Email link is invalid or has expired");
     } else {
-      redirect('/error');
+      redirect("/error");
     }
     return;
   }
 
-  revalidatePath('/', 'layout');
-  redirect('/');
+  revalidatePath("/", "layout");
+  redirect("/");
 }

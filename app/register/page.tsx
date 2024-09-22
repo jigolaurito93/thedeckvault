@@ -1,6 +1,7 @@
-'use client'
+"use client";
 import { createClient } from "@/utils/supabase/client";
 import { FcGoogle } from "react-icons/fc";
+import { signup } from "../login/actions";
 
 const Register = () => {
   const handleGoogleRegister = () => {
@@ -51,7 +52,7 @@ const Register = () => {
             placeholder="•••••••••"
             className="border rounded-sm p-2"
           />
-          <button type="submit" className="p-2 border">
+          <button type="submit" className="p-2 border" formAction={signup}>
             Register
           </button>
         </form>
