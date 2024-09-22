@@ -36,13 +36,13 @@ const Register = () => {
             Password
           </label>
           <input
-            type="password"
+            type="text"
             name="password"
             id="password"
             placeholder="•••••••••"
             className="border rounded-sm p-2"
           />
-          <label htmlFor="confirmPassword" className="pl-2">
+          {/* <label htmlFor="confirmPassword" className="pl-2">
             Confirm Password
           </label>
           <input
@@ -51,7 +51,7 @@ const Register = () => {
             id="confirmPassword"
             placeholder="•••••••••"
             className="border rounded-sm p-2"
-          />
+          /> */}
           <button type="submit" className="p-2 border" formAction={signup}>
             Register
           </button>
