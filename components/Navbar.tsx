@@ -5,14 +5,18 @@ import Menu from "./Menu";
 import { TbCardsFilled } from "react-icons/tb";
 import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
     <div className="h-20 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative">
       {/* mobile */}
-      <div className="h-full flex items-center justify-between md:hidden">
-        <Link href={"/"} className="text-2xl tracking-wide">
-          TDC
+      <div className="h-full relative flex items-center justify-end md:hidden">
+        <Link
+          href={"/"}
+          className="text-2xl tracking-wide absolute left-1/2 -translate-x-1/2"
+        >
+          <Image width={200} height={200} alt="logo" src={"/logo/logo.png"} />
         </Link>
         <Menu />
       </div>
@@ -22,8 +26,12 @@ const Navbar = () => {
         {/* left */}
         <div className="w-1/3 xl:w-1/2 flex items-center gap-10">
           <Link href={"/"} className="flex gap-2 items-center">
-            <TbCardsFilled className="text-[25px]" />
-            <div className="text-2xl tracking-wide">TDV</div>
+            <Image
+              width={65}
+              height={200}
+              alt="logo"
+              src={"/logo/bear-logo-trans.png"}
+            />
           </Link>
           <div className="hidden xl:flex gap-4">
             <Link href={"/"}>Home</Link>
