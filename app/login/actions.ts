@@ -37,8 +37,10 @@ export async function signup(formData: FormData) {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
+  console.log("before");
 
   const { error } = await supabase.auth.signUp(data);
+  console.log("after");
 
   if (error) {
     if (error.message.includes("Email link is invalid or has expired")) {
@@ -50,5 +52,5 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/confirmationing");
 }
