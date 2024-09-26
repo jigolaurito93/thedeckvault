@@ -6,10 +6,11 @@ import { FcGoogle } from "react-icons/fc";
 const LoginPage = () => {
   const handleGoogleRegister = async () => {
     const supabase = createClient();
+    const redirectTo = `${window.location.origin}/auth/callback`;
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000/auth/callback",
+        redirectTo,
       },
     });
   };
