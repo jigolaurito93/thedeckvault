@@ -11,7 +11,7 @@ const ConfirmationPage = () => {
         email to complete your registration and access your account.
       </h2>
       <div className="text-xs">
-        If you don't see the email, check your spam or junk folder.
+        If you don&apos;t see the email, check your spam or junk folder.
       </div>
     </div>
   );
