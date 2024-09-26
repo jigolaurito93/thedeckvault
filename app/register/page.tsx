@@ -6,15 +6,14 @@ import { signup } from "../login/actions";
 const Register = () => {
   const handleGoogleRegister = async () => {
     const supabase = createClient();
-    const redirectUrl =
-      process.env.NODE_ENV === "development"
-        ? "https://thedeckvault.vercel.app/auth/callback"
-        : "http://localhost:3000/auth/callback";
 
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: redirectUrl,
+        redirectTo:
+          "https://thedeckvault-git-main-breakbuddys-projects.vercel.app/auth/callback" ||
+          "https://thedeckvault.vercel.app/auth/callback" ||
+          "http://localhost:3000/auth/callback",
       },
     });
   };
