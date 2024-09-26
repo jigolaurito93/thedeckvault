@@ -1,7 +1,8 @@
 "use client";
-import { createClient } from "@supabase/supabase-js";
+
 import { FcGoogle } from "react-icons/fc";
 import { signup } from "../login/actions";
+import { createClient } from "@/utils/supabase/client";
 
 const Register = () => {
   const handleGoogleRegister = async () => {
@@ -11,7 +12,7 @@ const Register = () => {
     console.log("Supabase URL:", supabaseUrl);
     console.log("Supabase Anon Key:", supabaseAnonKey);
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    const supabase = createClient();
 
     // Construct the redirect URL based on the current window location
     const redirectTo = `${window.location.origin}/auth/callback`;
