@@ -5,13 +5,17 @@ import { signup } from "../login/actions";
 
 const Register = () => {
   const handleGoogleRegister = async () => {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+    console.log("Supabase URL:", supabaseUrl);
+    console.log("Supabase Anon Key:", supabaseAnonKey);
+
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
     // Construct the redirect URL based on the current window location
     const redirectTo = `${window.location.origin}/auth/callback`;
+    console.log("Redirect URL:", redirectTo);
 
     await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -20,6 +24,7 @@ const Register = () => {
       },
     });
   };
+
   return (
     <div>
       <div className="py-20 w-[80vw] max-w-[25rem] mx-auto flex flex-col items-center gap-5 ">
@@ -43,36 +48,23 @@ const Register = () => {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             placeholder="•••••••••"
             className="border rounded-sm p-2"
           />
-          {/* <label htmlFor="confirmPassword" className="pl-2">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="•••••••••"
-            className="border rounded-sm p-2"
-          /> */}
           <button type="submit" className="p-2 border" formAction={signup}>
-            Register
+            Sign Up
           </button>
         </form>
-        or
-        {/* OAuth */}
         <button
           className="flex items-center gap-2 border w-full justify-center py-2"
-          onClick={() => handleGoogleRegister()}
+          onClick={handleGoogleRegister}
         >
           <FcGoogle className="text-xl" />
           <h3>Sign Up with Google</h3>
         </button>
-        {/* OAuth */}
       </div>
     </div>
   );
