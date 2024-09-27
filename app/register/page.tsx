@@ -6,24 +6,20 @@ import { createClient } from "@/utils/supabase/client";
 
 const Register = () => {
   const handleGoogleRegister = async () => {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+    try {
+      const supabase = createClient();
+      // Construct the redirect URL based on the current window location
+      const redirectTo = `${window.location.origin}/auth/callback`;
+      console.log("Redirect URL:", redirectTo);
 
-    console.log("Supabase URL:", supabaseUrl);
-    console.log("Supabase Anon Key:", supabaseAnonKey);
-
-    const supabase = createClient();
-
-    // Construct the redirect URL based on the current window location
-    const redirectTo = `${window.location.origin}/auth/callback`;
-    console.log("Redirect URL:", redirectTo);
-
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo,
-      },
-    });
+      await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo,
+        },
+      });
+    } catch (error) { console.error('Google OAuth Error:', error);
+    }}
   };
 
   return (
