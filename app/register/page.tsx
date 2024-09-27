@@ -18,8 +18,9 @@ const Register = () => {
           redirectTo,
         },
       });
-    } catch (error) { console.error('Google OAuth Error:', error);
-    }}
+    } catch (error) {
+      console.error("Google OAuth Error:", error);
+    }
   };
 
   return (
