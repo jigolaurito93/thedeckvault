@@ -57,8 +57,8 @@ const AdminProducts = () => {
   }, []);
 
   return (
-    <div className="px-12">
-      <h1 className="text-3xl py-8">Welcome Admin!</h1>
+    <div className="px-32 py-10">
+      <h1 className="text-5xl py-6 font-semibold">Welcome Admin!</h1>
       <h1 className="text-2xl py-4">Products</h1>
       {error && <p>Error: {error}</p>}
       <table className="min-w-full border-collapse border border-black">
