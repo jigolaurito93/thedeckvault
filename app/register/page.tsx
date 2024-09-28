@@ -52,6 +52,16 @@ const Register = () => {
             placeholder="•••••••••"
             className="border rounded-sm p-2"
           />
+          <label htmlFor="password" className="pl-2">
+            Confirm Password
+          </label>
+          <input
+            type="confirmPassword"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="•••••••••"
+            className="border rounded-sm p-2"
+          />
           <button type="submit" className="p-2 border" formAction={signup}>
             Sign Up
           </button>
