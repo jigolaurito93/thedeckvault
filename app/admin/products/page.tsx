@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/client";
 import React, { useEffect, useState } from "react";
 import { PokemonCards } from "@/data/pokemon-cards";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -109,6 +110,11 @@ const AdminProducts = () => {
                 </td>
                 <td className="border border-black px-4 py-2">
                   {new Date(updated_at).toLocaleDateString()}
+                </td>
+                <td className="border border-black px-4 py-2">
+                  <Link href={`/admin/products/${id}`}>
+                    <button className="text-blue-700 text-center">Edit</button>
+                  </Link>
                 </td>
               </tr>
             );

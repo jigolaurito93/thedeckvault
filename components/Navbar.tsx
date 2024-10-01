@@ -31,6 +31,7 @@ const Navbar = () => {
               height={200}
               alt="logo"
               src={"/logo/bear-logo-trans.png"}
+              priority
             />
           </Link>
           <div className="hidden xl:flex gap-4">
