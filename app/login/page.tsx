@@ -52,7 +52,7 @@ const LoginPage = () => {
           onClick={() => handleGoogleRegister()}
         >
           <FcGoogle className="text-xl" />
-          <h3>Sign Up with Google</h3>
+          <h3>Sign In with Google</h3>
         </button>
         {/* OAuth */}
       </div>
