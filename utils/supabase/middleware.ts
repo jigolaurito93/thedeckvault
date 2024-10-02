@@ -36,7 +36,20 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  const authId = user?.id;
 
+  const profile = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", authId)
+    .single();
+
+  // Check if the user is logged in and is admin to have access in admin routes.
+
+  // This middleware function ensures that only authenticated users with the "admin" role can access admin routes. It first checks if the user is logged in and attempts to access the login or register pages.
+  // If so, the user is redirected to the home page to prevent logged-in users from accessing these pages. Next, it verifies if the user is either not logged in or does not have the "admin" role.
+  // If the user tries to access any route that starts with /admin under these conditions, they are redirected to the home page.
+  // This mechanism ensures that only authorized admin users can access admin-specific routes, while logged-in users are prevented from accessing the login and register pages.
   if (
     user &&
     (request.nextUrl.pathname === "/login" ||
@@ -45,18 +58,14 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
     return NextResponse.redirect(url);
+  } else if (!user || profile?.data?.role !== "admin") {
+    if (request.nextUrl.pathname.startsWith("/admin")) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    }
   }
-
-  // if (
-  //   !user &&
-  //   !request.nextUrl.pathname.startsWith('/login') &&
-  //   !request.nextUrl.pathname.startsWith('/auth')
-  // ) {
-  //   // no user, potentially respond by redirecting the user to the login page
-  //   const url = request.nextUrl.clone()
-  //   url.pathname = '/login'
-  //   return NextResponse.redirect(url)
-  // }
+  // Check if the user is logged in and is admin to have access in admin routes.
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   // creating a new response object with NextResponse.next() make sure to:
