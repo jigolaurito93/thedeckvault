@@ -2,6 +2,7 @@
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 interface AdminUsersProps {
   id: number;
@@ -46,7 +47,10 @@ const AdminUsers = () => {
     <div className="px-32 py-10">
       <div>
         <button className="bg-blue-500 px-4 py-2 text-white rounded-md">
-          <Link href={"/admin/products"}>Products</Link>
+          <Link href={"/admin/dashboard"} className="flex items-center gap-1">
+            <IoChevronBackOutline />
+            Back
+          </Link>
         </button>
       </div>
       <h1 className="text-5xl py-6 font-semibold">Welcome Admin!</h1>
