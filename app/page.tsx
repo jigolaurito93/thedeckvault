@@ -14,7 +14,9 @@ const HomePage = () => {
         <ProductList />
       </div>
       <div className="mt-24 flex flex-col ">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl w-full px-12 mb-12">Categories</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl w-full px-12 mb-12">
+          Categories
+        </h1>
         <CategoryList />
       </div>
       <div className="mt-24 px-12 flex flex-col justify-center items-center">

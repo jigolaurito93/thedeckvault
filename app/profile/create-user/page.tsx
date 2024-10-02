@@ -1,12 +1,14 @@
 import React from "react";
 
 const CreateProfile = () => {
-  return <div>
+  return (
     <div>
-      <label>First Name</label>
-      <input type="text" />
+      <div>
+        <label>First Name</label>
+        <input type="text" />
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default CreateProfile;
