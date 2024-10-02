@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { PokemonCards } from "@/data/pokemon-cards";
 import Image from "next/image";
 import Link from "next/link";
+import { IoChevronBack } from "react-icons/io5";
+// import { checkAdmin } from "@/utils/checkAdmin";
 
 interface Product {
   id: number;
@@ -54,11 +56,20 @@ const AdminProducts = () => {
   };
 
   useEffect(() => {
+    // checkAdmin();
     fetchProducts();
   }, []);
 
   return (
     <div className="px-32 py-10">
+      <div>
+        <button className="bg-blue-500 px-4 py-2 text-white rounded-md">
+          <Link href={"/admin/dashboard"} className="flex items-center gap-1">
+            <IoChevronBack />
+            Back
+          </Link>
+        </button>
+      </div>
       <h1 className="text-5xl py-6 font-semibold">Welcome Admin!</h1>
       <h1 className="text-2xl py-4">Products</h1>
       {error && <p>Error: {error}</p>}
