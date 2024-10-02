@@ -8,6 +8,7 @@ import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 import CartModal from "./CartModal";
 import { createClient } from "@/utils/supabase/client";
+import { checkIfAdmin } from "@/utils/checkIfAdmin";
 
 const NavIcons = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const NavIcons = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const fetchUser = async () => {
     const supabase = createClient();
@@ -29,9 +31,17 @@ const NavIcons = () => {
     }
   };
 
+  const handleProfileIcon = () => {};
+
   useEffect(() => {
+    const checkAdminUser = async () => {
+      setIsAdmin(await checkIfAdmin());
+    };
+    checkAdminUser();
+    console.log("is admin", isAdmin);
+
     fetchUser();
-  }, []);
+  }, [isAdmin]);
 
   const handleLogout = async () => {
     const supabase = createClient();
@@ -59,7 +69,18 @@ const NavIcons = () => {
       />
       {isUserLoggedIn && isProfileOpen && (
         <div className="absolute p-4 rounded-md top-12 left-0 text-sm shadow-sm z-20 w-full bg-white border flex flex-col gap-1">
-          <Link href={"/"}>Profile</Link>
+          {isAdmin ? (
+            <Link
+              href={"/admin/dashboard"}
+              onClick={() => setIsProfileOpen(!isProfileOpen)}
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <Link href={"/"} onClick={() => setIsProfileOpen(!isProfileOpen)}>
+              Profile
+            </Link>
+          )}
 
           <div
             className="cursor-pointer"
