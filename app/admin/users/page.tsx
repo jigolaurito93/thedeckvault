@@ -1,5 +1,6 @@
 "use client";
 import { createClient } from "@/utils/supabase/client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -19,7 +20,7 @@ const userTitle = [
   "Role",
   "Display Name",
   "Email",
-  "Image URL",
+  "Image",
   "Created At",
   "Updated At",
 ];
@@ -86,12 +87,25 @@ const AdminUsers = () => {
                   {display_name}
                 </td>
                 <td className="border border-black px-4 py-2">{email}</td>
-                <td className="border border-black px-4 py-2">{image_url}</td>
+                <td className="border border-black px-4 py-2">
+                  <Image
+                    className="w-28 mx-auto"
+                    src={image_url}
+                    width={200}
+                    height={200}
+                    alt="Profile Image"
+                  />
+                </td>
                 <td className="border border-black px-4 py-2">
                   {new Date(created_at).toLocaleDateString()}
                 </td>
                 <td className="border border-black px-4 py-2">
                   {new Date(updated_at).toLocaleDateString()}
+                </td>
+                <td className="border border-black px-4 py-2">
+                  <Link href={`/admin/users/${id}`}>
+                    <button className="text-blue-700 text-center">Edit</button>
+                  </Link>
                 </td>
               </tr>
             );
