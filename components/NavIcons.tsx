@@ -11,7 +11,7 @@ import { createClient } from "@/utils/supabase/client";
 import { checkIfAdmin } from "@/utils/checkIfAdmin";
 import { compareUserID } from "@/utils/compareUserID";
 import Image from "next/image";
-import { UserDataProps } from "@/utils/userDataProps";
+import { UserDataProps } from "@/data/userDataProps";
 
 const NavIcons = () => {
   const router = useRouter();
