@@ -16,7 +16,14 @@ const Navbar = () => {
           href={"/"}
           className="text-2xl tracking-wide absolute left-1/2 -translate-x-1/2"
         >
-          <Image width={200} height={200} alt="logo" src={"/logo/logo.png"} />
+          <Image
+            width={200}
+            height={200}
+            alt="logo"
+            src={"/logo/logo.png"}
+            priority
+            className="w-auto h-auto"
+          />
         </Link>
         <Menu />
       </div>
@@ -28,10 +35,11 @@ const Navbar = () => {
           <Link href={"/"} className="flex gap-2 items-center">
             <Image
               width={65}
-              height={200}
+              height={65}
               alt="logo"
               src={"/logo/bear-logo-trans.png"}
               priority
+              className="w-16 h-16"
             />
           </Link>
           <div className="hidden xl:flex gap-4">

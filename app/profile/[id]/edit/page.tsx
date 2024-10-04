@@ -19,8 +19,9 @@ const EditProfilePage = () => {
     city: "",
     state: "",
     zipcode: "",
-    email: "",
+    email: "", // Added email field
   });
+
   useEffect(() => {
     const fetchUser = async () => {
       const data = await compareUserID();
@@ -35,14 +36,18 @@ const EditProfilePage = () => {
           city: data.city || "",
           state: data.state || "",
           zipcode: data.zipcode || "",
-          email: data.email || "",
+          email: data.email || "", // Set email field
         });
       }
     };
     fetchUser();
   }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    console.log("Submitting form with values:", userField);
+
     const supabase = createClient();
     const { data, error } = await supabase
       .from("profiles")
@@ -58,6 +63,7 @@ const EditProfilePage = () => {
         email: userField.email || null, // Update email field
       })
       .eq("id", userData?.id);
+
     console.log("This is the ID:", userData?.id);
 
     if (error) {
@@ -80,7 +86,7 @@ const EditProfilePage = () => {
           </button>
         </div>
         <h1 className="text-4xl font-medium">Edit User</h1>
-        <form action="" className="flex gap-6">
+        <form className="flex gap-6" onSubmit={handleSubmit}>
           {/* LEFT */}
           <div className="flex flex-col gap-3">
             <div className="border w-48 h-48 flex justify-center items-center">
@@ -90,6 +96,7 @@ const EditProfilePage = () => {
                 width={200}
                 height={200}
                 priority
+                style={{ width: "auto", height: "auto" }} // 
               />
             </div>
             <button className="border px-4 py-1 w-fit self-end">
@@ -100,12 +107,12 @@ const EditProfilePage = () => {
           {/* RIGHT */}
           <div className="grid grid-cols-4 gap-3 w-[30rem]">
             <div className="flex gap-1 flex-col col-span-2">
-              <label htmlFor="name" className="pl-2 text-sm">
+              <label htmlFor="first_name" className="pl-2 text-sm">
                 First
               </label>
               <input
                 type="text"
-                id="name"
+                id="first_name"
                 className="border rounded-md px-2 py-1"
                 value={userField.first_name}
                 onChange={(e) => {
@@ -114,12 +121,12 @@ const EditProfilePage = () => {
               />
             </div>
             <div className="flex gap-1 flex-col col-span-2">
-              <label htmlFor="name" className="pl-2 text-sm">
+              <label htmlFor="last_name" className="pl-2 text-sm">
                 Last
               </label>
               <input
                 type="text"
-                id="lastName"
+                id="last_name"
                 className="border rounded-md px-2 py-1"
                 value={userField.last_name}
                 onChange={(e) => {
@@ -129,23 +136,26 @@ const EditProfilePage = () => {
             </div>
 
             <div className="flex gap-1 flex-col col-span-2">
-              <label htmlFor="name" className="pl-2 text-sm">
+              <label htmlFor="email" className="pl-2 text-sm">
                 Email
               </label>
               <input
                 type="text"
+                id="email"
                 className="border rounded-md px-2 py-1"
-                value={userData?.email}
+                value={userField.email}
+                onChange={(e) => {
+                  setUserField({ ...userField, email: e.target.value });
+                }}
               />
             </div>
             <div className="flex gap-1 flex-col col-span-2">
-              <label htmlFor="name" className="pl-2 text-sm">
-                {" "}
+              <label htmlFor="phone" className="pl-2 text-sm">
                 Phone
               </label>
               <input
                 type="text"
-                id="phoneNumber"
+                id="phone"
                 className="border rounded-md px-2 py-1"
                 value={userField.phone}
                 onChange={(e) => {
@@ -154,8 +164,7 @@ const EditProfilePage = () => {
               />
             </div>
             <div className="flex gap-1 flex-col col-span-4">
-              <label htmlFor="name" className="pl-2 text-sm">
-                {" "}
+              <label htmlFor="address1" className="pl-2 text-sm">
                 Address 1
               </label>
               <input
@@ -168,14 +177,13 @@ const EditProfilePage = () => {
                 }}
               />
             </div>
-            <div className="flex gap-1 flex-col col-span-1">
-              <label htmlFor="name" className="pl-2 text-sm">
-                {" "}
+            <div className="flex gap-1 flex-col col-span-4">
+              <label htmlFor="address2" className="pl-2 text-sm">
                 Address 2
               </label>
               <input
                 type="text"
-                id="unitNo"
+                id="address2"
                 className="border rounded-md px-2 py-1"
                 value={userField.address2}
                 onChange={(e) => {
@@ -184,8 +192,7 @@ const EditProfilePage = () => {
               />
             </div>
             <div className="flex gap-1 flex-col col-span-3">
-              <label htmlFor="name" className="pl-2 text-sm">
-                {" "}
+              <label htmlFor="city" className="pl-2 text-sm">
                 City
               </label>
               <input
@@ -198,9 +205,8 @@ const EditProfilePage = () => {
                 }}
               />
             </div>
-            <div className="flex gap-1 flex-col col-span-2">
-              <label htmlFor="name" className="pl-2 text-sm">
-                {" "}
+            <div className="flex gap-1 flex-col col-span-1">
+              <label htmlFor="state" className="pl-2 text-sm">
                 State
               </label>
               <input
@@ -214,13 +220,12 @@ const EditProfilePage = () => {
               />
             </div>
             <div className="flex gap-1 flex-col col-span-2">
-              <label htmlFor="name" className="pl-2 text-sm">
-                {" "}
+              <label htmlFor="zipcode" className="pl-2 text-sm">
                 Zip Code
               </label>
               <input
                 type="text"
-                id="zipCode"
+                id="zipcode"
                 className="border rounded-md px-2 py-1"
                 value={userField.zipcode}
                 onChange={(e) => {
@@ -229,11 +234,7 @@ const EditProfilePage = () => {
               />
             </div>
             <div className="col-span-4 flex justify-end mt-6">
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="border px-4 py-1 rounded-md"
-              >
+              <button type="submit" className="border px-4 py-1 rounded-md">
                 Save
               </button>
             </div>
