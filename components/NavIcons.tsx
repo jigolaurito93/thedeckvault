@@ -9,6 +9,9 @@ import { redirect, useRouter } from "next/navigation";
 import CartModal from "./CartModal";
 import { createClient } from "@/utils/supabase/client";
 import { checkIfAdmin } from "@/utils/checkIfAdmin";
+import { compareUserID } from "@/utils/compareUserID";
+import Image from "next/image";
+import { UserDataProps } from "@/utils/userDataProps";
 
 const NavIcons = () => {
   const router = useRouter();
@@ -18,6 +21,7 @@ const NavIcons = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [userData, setUserData] = useState<UserDataProps>();
 
   const fetchUser = async () => {
     const supabase = createClient();
@@ -28,6 +32,10 @@ const NavIcons = () => {
     } else {
       setIsUserLoggedIn(true);
       setUserEmail(data?.user?.email || null);
+      console.log("data:", data);
+      const userData = await compareUserID();
+      setUserData(userData);
+      console.log("user data:", userData);
     }
   };
 
@@ -63,10 +71,21 @@ const NavIcons = () => {
   };
   return (
     <div className="flex items-center gap-4 xl:gap-6 relative">
-      <FaRegUserCircle
-        className="cursor-pointer text-xl"
-        onClick={handleProfile}
-      />
+      {userData?.image_url ? (
+        <Image
+          src={userData?.image_url || "/avatar.png"}
+          alt="Profile Avatar"
+          width={25}
+          height={25}
+          className="rounded-full cursor-pointer"
+          onClick={handleProfile}
+        />
+      ) : (
+        <FaRegUserCircle
+          className="cursor-pointer text-xl"
+          onClick={handleProfile}
+        />
+      )}
       {isUserLoggedIn && isProfileOpen && (
         <div className="absolute p-4 rounded-md top-12 left-0 text-sm shadow-sm z-20 w-full bg-white border flex flex-col gap-1">
           {isAdmin ? (
@@ -77,7 +96,10 @@ const NavIcons = () => {
               Dashboard
             </Link>
           ) : (
-            <Link href={"/"} onClick={() => setIsProfileOpen(!isProfileOpen)}>
+            <Link
+              href={`/profile/${userData?.id}/edit`}
+              onClick={() => setIsProfileOpen(!isProfileOpen)}
+            >
               Profile
             </Link>
           )}
