@@ -8,26 +8,33 @@ const slides = [
   {
     id: 1,
     title: "Soda Pop Collections",
-    description: "Sale! Up to 50% off!",
+    description: "Sale! Up to 25% off!",
     img: "/images/soda.jpg",
     url: "/",
-    bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+    bg: "bg-gradient-to-r from-green-300 to-blue-500",
+    classNameTitle: "text-5xl lg:text-6xl 2xl:text-8xl",
+    classNameDesc: "text-xl lg:text-3xl 2xl:text-5xl",
   },
   {
     id: 2,
-    title: "Second slide",
-    description: "Second slide description",
-    img: "/images/soda.jpg",
+    title: "Vintage Gameboy Cartridges",
+    description:
+      "Relive the classics with our collection of vintage Gameboy cartridges.",
+    img: "/images/cartridges.jpg",
     url: "/",
-    bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+    bg: "bg-gradient-to-r from-red-400 to-yellow-500",
+    classNameTitle: "text-5xl lg:text-6xl 2xl:text-7xl",
+    classNameDesc: "text-xl lg:text-3xl 2xl:text-2xl 2xl:px-16",
   },
   {
     id: 3,
-    title: "Third slide",
-    description: "Third slide description",
-    img: "/images/soda.jpg",
+    title: "Pikachu Top Vintage",
+    description: "Buy 1 get 1 free!",
+    img: "/images/pikachu-shirt.avif",
     url: "/",
     bg: "bg-gradient-to-r from-yellow-50 to-pink-50",
+    classNameTitle: "text-5xl lg:text-6xl 2xl:text-7xl",
+    classNameDesc: "text-xl lg:text-3xl 2xl:text-5xl",
   },
 ];
 
@@ -55,10 +62,10 @@ const Slider = () => {
           >
             {/* text container */}
             <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col items-center justify-center gap-8 2xl:gap-20 text-center">
-              <h2 className="text-xl lg:text-3xl 2xl:text-5xl">
-                {slide.description}
-              </h2>
-              <h1 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold px-32 tracking-wider">
+              <h2 className={slide.classNameDesc}>{slide.description}</h2>
+              <h1
+                className={`${slide.classNameTitle} font-semibold px-32 tracking-wider`}
+              >
                 {slide.title}
               </h1>
               <Link href={slide.url}>
