@@ -1,12 +1,15 @@
 "use client";
 
+import { StatesUSA } from "@/data/statesUSA";
+import { CapitalizeText } from "@/utils/capitalizeText";
 import { compareUserID } from "@/utils/compareUserID";
 import { createClient } from "@/utils/supabase/client";
-import { UserDataProps } from "@/utils/userDataProps";
+import { UserDataProps } from "@/data/userDataProps";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
+import { UserFieldProps, UserProfileData } from "@/data/userData";
 
 const EditProfilePage = () => {
   const [userData, setUserData] = useState<UserDataProps>();
@@ -28,12 +31,12 @@ const EditProfilePage = () => {
       if (data) {
         setUserData(data);
         setUserField({
-          first_name: data.first_name || "",
+          first_name: CapitalizeText(data.first_name) || "",
           last_name: data.last_name || "",
           phone: data.phone || "",
-          address1: data.address1 || "",
+          address1: CapitalizeText(data.address1) || "",
           address2: data.address2 || "",
-          city: data.city || "",
+          city: CapitalizeText(data.city) || "",
           state: data.state || "",
           zipcode: data.zipcode || "",
           email: data.email || "", // Set email field
@@ -44,23 +47,21 @@ const EditProfilePage = () => {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-
     console.log("Submitting form with values:", userField);
 
     const supabase = createClient();
     const { data, error } = await supabase
       .from("profiles")
       .update({
-        first_name: userField.first_name || null,
-        last_name: userField.last_name || null,
-        phone: userField.phone || null,
-        address1: userField.address1 || null,
-        address2: userField.address2 || null,
-        city: userField.city || null,
-        state: userField.state || null,
-        zipcode: userField.zipcode || null,
-        email: userField.email || null, // Update email field
+        first_name: userField.first_name || "",
+        last_name: userField.last_name || "",
+        phone: userField.phone || "",
+        address1: userField.address1 || "",
+        address2: userField.address2 || "",
+        city: userField.city || "",
+        state: userField.state || "",
+        zipcode: userField.zipcode || "",
+        email: userField.email, // Update email field
       })
       .eq("id", userData?.id);
 
@@ -93,10 +94,9 @@ const EditProfilePage = () => {
               <Image
                 src={userData?.image_url || "/avatar.png"}
                 alt="Profile Image"
-                width={200}
-                height={200}
+                width={192}
+                height={192}
                 priority
-                style={{ width: "auto", height: "auto" }} // 
               />
             </div>
             <button className="border px-4 py-1 w-fit self-end">
@@ -106,6 +106,28 @@ const EditProfilePage = () => {
           {/* LEFT */}
           {/* RIGHT */}
           <div className="grid grid-cols-4 gap-3 w-[30rem]">
+            {UserProfileData.map((data) => {
+              const { name, label, colSpan } = data;
+              return (
+                <div className={`flex gap-1 flex-col ${colSpan}`}>
+                  <label htmlFor={name} className="pl-2 text-sm">
+                    {label}
+                  </label>
+                  <input
+                    type="text"
+                    id={name}
+                    className="border rounded-md px-2 py-1"
+                    value={userField[name as keyof UserFieldProps]}
+                    onChange={(e) => {
+                      setUserField({
+                        ...userField,
+                        [name]: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+              );
+            })}
             <div className="flex gap-1 flex-col col-span-2">
               <label htmlFor="first_name" className="pl-2 text-sm">
                 First
@@ -130,7 +152,10 @@ const EditProfilePage = () => {
                 className="border rounded-md px-2 py-1"
                 value={userField.last_name}
                 onChange={(e) => {
-                  setUserField({ ...userField, last_name: e.target.value });
+                  setUserField({
+                    ...userField,
+                    last_name: e.target.value,
+                  });
                 }}
               />
             </div>
@@ -209,7 +234,21 @@ const EditProfilePage = () => {
               <label htmlFor="state" className="pl-2 text-sm">
                 State
               </label>
-              <input
+              <select
+                id="state"
+                className="border rounded-md px-2 py-1"
+                value={userField.state}
+                onChange={(e) => {
+                  setUserField({ ...userField, state: e.target.value });
+                }}
+              >
+                {StatesUSA.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+              {/* <input
                 type="text"
                 id="state"
                 className="border rounded-md px-2 py-1"
@@ -217,7 +256,7 @@ const EditProfilePage = () => {
                 onChange={(e) => {
                   setUserField({ ...userField, state: e.target.value });
                 }}
-              />
+              /> */}
             </div>
             <div className="flex gap-1 flex-col col-span-2">
               <label htmlFor="zipcode" className="pl-2 text-sm">
