@@ -2,47 +2,47 @@ export const UserProfileData = [
   {
     name: "first_name",
     label: "First",
-    colSpan: 2,
+    className: "col-span-2",
   },
   {
     name: "last_name",
     label: "Last",
-    colSpan: 2,
+    className: "col-span-2",
   },
   {
     name: "email",
     label: "Email",
-    colSpan: 2,
+    className: "col-span-2",
   },
   {
     name: "phone",
     label: "Phone",
-    colSpan: 2,
+    className: "col-span-2",
   },
   {
     name: "address1",
     label: "Address 1",
-    colSpan: 4,
+    className: "col-span-4",
   },
   {
     name: "address2",
     label: "Address 2",
-    colSpan: 4,
+    className: "col-span-2",
   },
   {
     name: "city",
     label: "City",
-    colSpan: 3,
+    className: "col-span-2",
   },
   {
     name: "state",
     label: "State",
-    colSpan: 1,
+    className: "col-span-1",
   },
   {
     name: "zipcode",
     label: "Zip Code",
-    colSpan: 2,
+    className: "col-span-2",
   },
 ];
 
