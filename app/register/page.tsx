@@ -12,7 +12,7 @@ const Register = () => {
       const redirectTo = `${window.location.origin}/auth/callback`;
       console.log("Redirect URL:", redirectTo);
 
-      await supabase.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
           redirectTo,
@@ -31,7 +31,7 @@ const Register = () => {
           Create an account to access exclusive Pokemon products, enjoy
           personalized shopping, and stay updated with the latest releases.
         </p>
-        <form action="" className="flex flex-col w-full gap-2">
+        <form className="flex flex-col w-full gap-2">
           <label htmlFor="email" className="pl-2">
             Email
           </label>
@@ -52,7 +52,7 @@ const Register = () => {
             placeholder="•••••••••"
             className="border rounded-sm p-2"
           />
-          <label htmlFor="password" className="pl-2">
+          {/* <label htmlFor="password" className="pl-2">
             Confirm Password
           </label>
           <input
@@ -61,7 +61,7 @@ const Register = () => {
             id="confirmPassword"
             placeholder="•••••••••"
             className="border rounded-sm p-2"
-          />
+          /> */}
           <button type="submit" className="p-2 border" formAction={signup}>
             Sign Up
           </button>

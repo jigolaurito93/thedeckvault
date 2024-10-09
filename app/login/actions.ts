@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 
+
 export async function login(formData: FormData) {
   const supabase = createClient();
 
@@ -37,12 +38,13 @@ export async function signup(formData: FormData) {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
-  console.log("before");
+  console.log("Signup data:", data);
 
   const { error } = await supabase.auth.signUp(data);
-  console.log("after");
+  console.log("Supabase signup response:", error);
 
   if (error) {
+    console.error("Signup error:", error);
     if (error.message.includes("Email link is invalid or has expired")) {
       redirect("/error?message=Email link is invalid or has expired");
     } else {
