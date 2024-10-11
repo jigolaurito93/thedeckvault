@@ -2,27 +2,34 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { mobileLinks } from "@/data/navbar/mobile-links";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="cursor-pointer">
-      <RxHamburgerMenu
-        className="cursor-pointer text-xl"
-        onClick={() => setOpen(!open)}
-      />
-      {open && (
-        <div className="absolute bg-black top-20 text-white left-0 w-full h-[calc(100vh-80px)] flex flex-col justify-center items-center gap-8 text-xl z-10">
-          <Link href={"/"}>Home</Link>
-          <Link href={"/"}>Shop</Link>
-          <Link href={"/"}>Deals</Link>
-          <Link href={"/"}>About</Link>
-          <Link href={"/"}>Contact</Link>
-          <Link href={"/"}>Logout</Link>
-          <Link href={"/"}>Cart(1)</Link>
+    <Sheet>
+      <SheetTrigger>
+        <RxHamburgerMenu className="text-3xl font-semibold" />
+      </SheetTrigger>
+      <SheetContent className="bg-black text-white border-none">
+        <div className="flex flex-col h-screen items-center gap-9 text-2xl justify-center w-full border">
+          {mobileLinks.map((link) => {
+            const { title, url } = link;
+            return (
+              <SheetClose asChild>
+                <Link href={url}>{title}</Link>
+              </SheetClose>
+            );
+          })}
         </div>
-      )}
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
